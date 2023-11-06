@@ -19,3 +19,157 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.checkBoxAll{
+  transform : scale(1.4);
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+.checkBoxAllLabel{
+  cursor: pointer;
+  font-weight: 500;
+}
+.checkBoxAll:hover{
+  box-shadow: 2px 20px 30px rgb(0, 0, 0, 0.2);
+  transform : scale(1.5);
+}
+
+.deleteFileText{
+  background: #f8f8f8;
+  color: red;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+.deleteFileText:hover{
+  padding: 0px 10px;
+  box-shadow: 2px 20px 30px rgb(0, 0, 0, 0.2);
+  transform : scale(1.1);
+}
+
+.customGrid{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-gap: 30px;
+  text-align: center;
+  touch-action: none;
+  -ms-touch-action: none;
+  user-select: none;
+}
+/* .customGridItem{
+  position: relative;
+  border: 1px solid #e4e4e7;
+} */
+.customGridItem {
+  position: relative;
+  border: 1px solid #e4e4e7;
+  overflow: hidden; /* Added for the overlay effect */
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Overlay background color */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.customGridItem:hover .overlay {
+  opacity: 1;
+}
+
+/* .customGridItem::before{
+  content: '';
+  background: #000000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  border-radius: 5px;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+} */
+.customGridItem:hover::before{
+  opacity: 0.5;
+}
+/* .imageContainer{
+
+} */
+.imageContainer img{
+  width: 100%;
+  height: 100%;
+}
+.customGridItem:first-child{
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.checkBoxImage{
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 5000;
+  transform : scale(1.5);
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+
+.checkBoxImage:hover
+.checkBoxImage:checked{
+  box-shadow: 2px 20px 30px rgb(0, 0, 0, 0.2);
+}
+
+.addImageSection{
+  border: 1px dashed #dee2e6;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  background: #fafbfb;
+  height: 228px;
+}
+.addImageIcon{
+  font-size: 20px;
+  opacity: 0.8;
+}
+.addImageText{
+  font-size: 18px;
+  font-weight:600;
+}
+
+.dragging{
+  pointer-events: none;
+  touch-action: none;
+  -ms-touch-action: none;
+  box-shadow: 2px 20px 30px rgb(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+  .customGrid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 576px) {
+  .customGrid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 425px) {
+  .customGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 375px) {
+  .customGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 320px) {
+  .customGrid { grid-template-columns: repeat(1, 1fr); }
+  .customGridItem:first-child{ grid-column: auto; grid-row: auto }
+}
