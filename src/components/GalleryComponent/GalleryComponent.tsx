@@ -10,11 +10,12 @@ export default function GalleryComponent() {
   const [checked, setChecked] = useState([]);
   const [isDragging, setIsDragging] = useState();
   const containeRef = useRef();
-
+// @ts-ignore
   function handleChange(e) {
     let isChecked = e.target.checked;
     let value = parseInt(e.target.value);
     if (isChecked) {
+        // @ts-ignore
       setChecked([...checked, value]);
     } else {
       setChecked(checked.filter((id) => id !== value));
@@ -26,12 +27,13 @@ export default function GalleryComponent() {
 
   function deleteImage() {
     let finalImages = galleryImgs.filter((v) => {
+        // @ts-ignore
       return !checked.includes(v.id);
     });
     setGalleryImgs(finalImages);
     setChecked([]);
   }
-
+// @ts-ignore
   function detectLeftButton(e) {
     e = e || window.event;
     if ('buttons' in e) {
@@ -40,17 +42,18 @@ export default function GalleryComponent() {
     let button = e.which || e.button;
     return button === 1;
   }
-
+// @ts-ignore
   function checkPosition(e) {
     // Implement this function if needed.
   }
-
+// @ts-ignore
   function dragStart(e, index) {
     if (!detectLeftButton(e)) return;
 
     setIsDragging(index);
 
     const container = containeRef.current;
+    // @ts-ignore
     const items = [...container.childNodes];
     const dragItem = items[index];
     let dragItemImage = dragItem.childNodes[1];
@@ -77,7 +80,7 @@ export default function GalleryComponent() {
     document.onpointermove = dragMove;
     
 
-
+// @ts-ignore
     function dragMove(e) {
       const posX = e.clientX - x;
       const posY = e.clientY - y;
@@ -112,7 +115,7 @@ export default function GalleryComponent() {
       setGalleryImgs(newData);
     }
   }
-
+// @ts-ignore
   function handleCheckboxMouseDown(e) {
     // Prevent event propagation to the parent onMouseDown handler
     e.stopPropagation();
@@ -153,6 +156,7 @@ export default function GalleryComponent() {
           )}
         </div>
         <div className="card-body">
+        {/* @ts-ignore */}
           <div className="customGrid" ref={containeRef}>
             {galleryImgs.map(({ id, imgUrl }, index) => (
               <div
@@ -162,10 +166,13 @@ export default function GalleryComponent() {
                 onMouseEnter={() => setIsHover(index)}
                 onMouseLeave={() => setIsHover(-1)}
               >
+                {/* @ts-ignore */}
                 <div className="overlay" id={index}></div>
                 <div className={`imageContainer ${isDragging === index ? 'dragging' : ''}`}>
+                    
                   <Image
                     key={index}
+                    // @ts-ignore
                     id={index}
 
                     src={imgUrl}
@@ -179,12 +186,14 @@ export default function GalleryComponent() {
                     }}
                   />
                 </div>
+                {/* @ts-ignore */}
                 {isHover === index || checked.includes(id) ? (
                   <input
                     className="checkBoxImage"
                     id={`checkbox_id${index}`}
                     name="image"
                     value={id}
+                    // @ts-ignore
                     checked={checked.includes(id)}
                     type="checkbox"
                     onChange={handleChange}
